@@ -30,7 +30,7 @@ var newArr = [];
 						}	
 					}
 					for (var i=0; i<newArr.length; i++){
-						$("#brew-list").append(newArr[i].name + "<br>");
+						$("#brew-list").append("<p class='beer-link'>" + newArr[i].name + "</p>");
 					}
 	
 		
