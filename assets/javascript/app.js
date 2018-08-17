@@ -1,4 +1,6 @@
 
+var audio = new Audio ("../Group-Project-1/assets/sounds/beersound.wav")
+
 var beermapAPI = "7d9d88201b9b82b413a7691e626322bc";
 
 var yelpClient = "ogfrOLDoPooXqSpvb0BqGw";
@@ -11,6 +13,7 @@ var returnedObject;
 var newArr = [];
 
             $("#map-api").on("click", function () {
+                audio.play(audio);
 				var city = $("#city").val().trim();
                 var start = Date.now();
                 console.log("gettingData");  

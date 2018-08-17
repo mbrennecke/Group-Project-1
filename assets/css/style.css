@@ -32,12 +32,12 @@ h5 {
     border: 5px solid rgba(236, 137, 7, 0.856);
     border-radius: 20px;
     background-color:  rgba(247, 230, 2, 0.856);
+    overflow: hidden;
 
 }
 
 .form-control {
 
-    
 }
 
 .display-4 {
@@ -71,7 +71,8 @@ h5 {
     display: block;
     position: absolute;
     list-style: none;
-    background-color:rgba(236, 137, 7, 0.856);
+    background-color: white;
+    border: 1px solid  rgba(247, 230, 2, 0.856);    
     animation: square 20s infinite;
     transition-timing-function: linear;
     margin-top: 36px;
