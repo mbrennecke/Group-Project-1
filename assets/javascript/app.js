@@ -12,6 +12,7 @@ var newArr = [];
 
             $("#map-api").on("click", function () {
 				var city = $("#city").val().trim();
+				$("#city").val("");
                 var start = Date.now();
                 console.log("gettingData");  
         

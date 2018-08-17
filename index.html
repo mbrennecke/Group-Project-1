@@ -21,11 +21,6 @@
 </head>
 
 <body>
-
-    <button id="Map-Api">MAP (Wait 25 Seconds for Response)</button>
-    <button id="Yelp-Api">YELP</button>
-
-
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
 			<h1 class="display-4">Beer Bound!</h1>
@@ -38,7 +33,7 @@
 					<div class="input-group-prepend">
 						<button class="btn btn-info" type="button" id="map-api">City Search</button>
 					</div>
-					<input type="text" class="form-control" aria-label="City search" aria-describedby="button-addon1" id="city">
+					<input type="text" class="form-control" aria-label="City search" aria-describedby="map-api" id="city">
 				</div>
 
 			</div>
@@ -67,54 +62,52 @@
 		</div>
 	</div>
 
-	<div class="card">
-		<div class="card-body">
-			<h5 class="card-title">Search Results:</h5>
-			<div id="brew-list"></div>
-				<ul class="bubbles bubbles2">
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-				</ul>
-			</div>
-	</div>
+	<div class = "row">
+		<div class = "col-md-5">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">Search Results:</h5>
+					<div id="brew-list"></div>
+						<ul class="bubbles bubbles2">
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
 
-	<div class="col-md-9">
-		<div class="row">
-			<div class="col-md" id="yelp">
-				<p>I'm also a row col</p>
+				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md" id="map">
-				<p>I to am also a row col</p>
+		<div class="col-md-7">
+			<div class="row">
+				<div class="col-md" id="yelp">
+					<p>I'm also a row col</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md" id="map">
+					<p>I to am also a row col</p>
+				</div>
 			</div>
 		</div>
 	</div>
-	</div>
-	</div>
 
-	</div>
-
-
-	</div>
 
 	<script src="assets/javascript/app.js"></script>
 </body>
