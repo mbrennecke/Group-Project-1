@@ -15,6 +15,7 @@ var newArr = [];
             $("#map-api").on("click", function () {
                 audio.play(audio);
 				var city = $("#city").val().trim();
+				$("#city").val("");
                 var start = Date.now();
                 console.log("gettingData");  
         

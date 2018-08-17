@@ -26,29 +26,28 @@ h5 {
 
 .card {
     position: relative;
-    width: 500px;
-    margin-left: 10px;
+	margin-left: 10px;
     padding: 20px;
     border: 5px solid rgba(236, 137, 7, 0.856);
     border-radius: 20px;
     background-color:  rgba(247, 230, 2, 0.856);
-    overflow: hidden;
 
+    overflow: hidden;
+height: 15rem;
 }
 
-.form-control {
+.card-body{
+	overflow:auto;
 
 }
 
 .display-4 {
-    font-size: 4.5rem;
-    
+    font-size: 4.5rem;  
 }
 
 .btn {
 	background-color: #212529;
-    color: #ffc136;
-    
+    color: #ffc136; 
 }
 
 .bubbles {
@@ -58,13 +57,11 @@ h5 {
     width: 100%;
     height: 100%;
     transform: translateZ(0);
-
 }
 
 .bubbles2 {
     margin-left: 50px;
-    margin-top: 5px; 
-    
+    margin-top: 5px;  
 }
 
 .bubbles li {
@@ -79,13 +76,11 @@ h5 {
     opacity: 0.8;
     border-radius: 200px;
     width: 5px;
-    height: 5px;
-    
+    height: 5px; 
 }
 
 ul {
-    margin-right: 50px;
-    
+    margin-right: 50px; 
 }
 
 .bubbles li:nth-child(1) {
@@ -215,10 +210,11 @@ ul {
 @keyframes square {
     0% {
         -webkit-transform: translateY(0);
-}   100% {
+	}   
+	100% {
        -webkit-transform: translateY(-900px) rotate(630deg);
         transform: translateY(-900px) rotate(630deg);
-}
+	}
 
 }
 
