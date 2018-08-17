@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+
+<button id="Beer-Button">Beer Button</button>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+
+
+
+
+
+    $("#Beer-Button").on("click", function () {
+        var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=by-chloe&location=denver";
+
+        $.ajax({
+            url: myurl,
+            headers: {
+                'Authorization': 'Bearer myQkJirdprwS7KhRTJdxdN17IMWvBUPgWEM0-2iucZ7xwZMV5Fa13rQlRQdZb0NHihit4qRM1oRlzEpDxWY68jgauMor9KGKVEZAaYghUvznKLcgzkATkoZOxLd1W3Yx',
+            },
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    });
+
+</script>

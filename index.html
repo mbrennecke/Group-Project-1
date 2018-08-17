@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -17,6 +17,53 @@
 </head>
 
 <body>
+        <script type="text/javascript">
+
+
+            $("#Map-Api").on("click", function () {
+                var start = Date.now();
+                console.log("gettingData");  
+        
+                var queryURL = "http://beermapping.com/webservice/locstate/7d9d88201b9b82b413a7691e626322bc/den,co&s=json";
+        
+        
+                $.ajax({
+                    url: queryURL,
+                    method: "GET",
+                }).then(function (response) {
+                    console.log(response);
+                    console.log("Time Lag: " + (Date.now() - start));
+                }).catch(function (error) {
+                    console.log(error);
+                })
+        
+            });
+
+                $("#Yelp-Api").on("click", function () {
+        var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=by-chloe&location=denver";
+
+        $.ajax({
+            url: myurl,
+            headers: {
+                'Authorization': 'Bearer myQkJirdprwS7KhRTJdxdN17IMWvBUPgWEM0-2iucZ7xwZMV5Fa13rQlRQdZb0NHihit4qRM1oRlzEpDxWY68jgauMor9KGKVEZAaYghUvznKLcgzkATkoZOxLd1W3Yx',
+            },
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    });
+
+
+        
+        </script>
+
+
+    <script src="java/main.js"></script>
+
+    <button id="Map-Api">MAP</button>
+    <button id="Yelp-Api">YELP</button>
 
     <div class=container>
 
@@ -35,7 +82,7 @@
 
 
 
-    
+
 
 </body>
 
