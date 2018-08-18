@@ -48,7 +48,7 @@ var yelpState;
 				var linkId = "item" + i;
 				$("#brew-list").append("<p><a href='#' class='beer-link' id='"+ linkId +"'>" + newArr[i].name + "</a><br><span class='address'>" + newArr[i].street + "<br>" + newArr[i].city + ", " + newArr[i].state + "</span></p>");
 			}
-			yelpState = newArr[0].state;
+			//yelpState = newArr[0].state;
 
 		}).catch(function (error) {
 			console.log(error);
