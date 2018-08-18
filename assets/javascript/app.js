@@ -57,10 +57,13 @@ var yelpState;
 	
 	});
 
-	$(document).on("click", "a", function(event) {
-
-		$.ajax({
-			url: "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4&fields=name,rating,formatted_phone_number,opening_hours,price_level,reviews&key=AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A",
+	$("#Google-Api").on("click", function () {
+		var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4&fields=name,rating,formatted_phone_number,opening_hours,price_level,reviews&key=AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A";
+		console.log("gettingData");  
+	
+	
+			$.ajax({
+			url: queryURL,
 			method: "GET",
 		}).then(function (response) {
 			console.log(response);
