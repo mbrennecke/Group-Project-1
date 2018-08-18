@@ -58,9 +58,13 @@ var yelpState;
 	});
 
 	$(document).on("click", "a", function(event) {
-		var reviewLookup = $(this).attr("id");
-		var ret = reviewLookup.replace('item','');
-		ret = parseInt(ret);
-		console.log(newArr[ret]);
+
+		$.ajax({
+			url: "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4&fields=name,rating,formatted_phone_number,opening_hours,price_level,reviews&key=AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A",
+			method: "GET",
+		}).then(function (response) {
+			console.log(response);
+	});
+	
 	});
 
