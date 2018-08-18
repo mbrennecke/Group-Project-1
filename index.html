@@ -29,13 +29,14 @@
 
 		<div class="row justify-content-md-center">
 			<div class="col col-md-6">
+			<form>
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
-						<button class="btn btn-info" type="button" id="map-api">City Search</button>
+						<button type="submit" class="btn btn-info"  id="submit">City Search</button>
 					</div>
-					<input type="text" class="form-control" aria-label="City search" aria-describedby="map-api" id="city">
+					<input type="text" class="form-control" aria-label="City search" aria-describedby="map-api" id="city" for="map-api">
 				</div>
-
+				</form>
 			</div>
 			<ul class="bubbles">
 				<li></li>
@@ -66,7 +67,7 @@
 		<div class = "col-md-5">
 			<div class="card">
 				<div class="card-body">
-					<h5 class="card-title">Search Results:</h5>
+					<h3 class="card-title">Search Results:</h3>
 					<div id="brew-list"></div>
 						<ul class="bubbles bubbles2">
 							<li></li>

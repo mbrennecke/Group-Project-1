@@ -12,96 +12,55 @@ var googleMap = "AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A";
 var returnedObject;
 var newArr = [];
 
-            $("#map-api").on("click", function () {
-                audio.play(audio);
-				var city = $("#city").val().trim();
-				$("#city").val("");
-                var start = Date.now();
-                console.log("gettingData");  
-        
-                var queryURL = "http://beermapping.com/webservice/loccity/7d9d88201b9b82b413a7691e626322bc/"+ city +"&s=json";
-        
-        
-                $.ajax({
-                    url: queryURL,
-                    method: "GET",
-                }).then(function (response) {
-                    console.log(response);
-					returnedObject = response;
-                    console.log("Time Lag: " + (Date.now() - start));
-					for (var i=0; i<response.length; i++){
-						if (response[i].status == "Brewpub" || response[i].status == "Brewery") {
-							newArr.push(response[i]);
-						}	
-					}
-					for (var i=0; i<newArr.length; i++){
-						$("#brew-list").append("<p class='beer-link'>" + newArr[i].name + "</p>");
-					}
-	
-		
-                }).catch(function (error) {
-                    console.log(error);
-                })
-        
-			
-            });
+var yelpLookUp;
+var yelpCity;
+var yelpState;
 
-                $("#Yelp-Api").on("click", function () {
-        var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=by-chloe&location=denver";
 
-        $.ajax({
-            url: myurl,
-            headers: {
-                'Authorization': 'Bearer myQkJirdprwS7KhRTJdxdN17IMWvBUPgWEM0-2iucZ7xwZMV5Fa13rQlRQdZb0NHihit4qRM1oRlzEpDxWY68jgauMor9KGKVEZAaYghUvznKLcgzkATkoZOxLd1W3Yx',
-            },
-            method: 'GET',
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
-            }
-        });
-    });
-	
+//this function listens for click event of form to search city
+	$("#submit").on("click", function (event) {
+		event.preventDefault();
+		if ($("#city").val() == ""){
+			return;
+		}
+		audio.play(audio);
+		var city = $("#city").val().trim();
+		$("#city").val("");
+ 
+		yelpCity = city;
 
+		var queryURL = "http://beermapping.com/webservice/loccity/" + beermapAPI + "/"+ city +"&s=json";
+
+
+		$.ajax({
+			url: queryURL,
+			method: "GET",
+		}).then(function (response) {
+			$("#brew-list").empty();
+			newArr = [];
+			returnedObject = response;
+			for (var i=0; i<response.length; i++){
+				if (response[i].status == "Brewpub" || response[i].status == "Brewery") {
+					newArr.push(response[i]);
+				}	
+			}
+			for (var i=0; i<newArr.length; i++){
+				var linkId = "item" + i;
+				$("#brew-list").append("<p><a href='#' class='beer-link' id='"+ linkId +"'>" + newArr[i].name + "</a><br><span class='address'>" + newArr[i].street + "<br>" + newArr[i].city + ", " + newArr[i].state + "</span></p>");
+			}
+			yelpState = newArr[0].state;
+
+		}).catch(function (error) {
+			console.log(error);
+		})
 
 	
+	});
 
-	
-
-var start = Date.now();
-
-$("#Yelp-Api").on("click", function () {
-    var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=by-chloe&location=denver";
-    console.log("gettingData");
-
-    $.ajax({
-        url: myurl,
-        headers: {
-            'Authorization': 'Bearer myQkJirdprwS7KhRTJdxdN17IMWvBUPgWEM0-2iucZ7xwZMV5Fa13rQlRQdZb0NHihit4qRM1oRlzEpDxWY68jgauMor9KGKVEZAaYghUvznKLcgzkATkoZOxLd1W3Yx',
-        },
-        method: 'GET',
-        dataType: 'json',
-        success: function (data) {
-            console.log("Time Lag: " + (Date.now() - start));
-            console.log(data);
-        }
-    });
-});
-
-$("#Map-Api").on("click", function () {
-    var queryURL = "http://beermapping.com/webservice/locstate/7d9d88201b9b82b413a7691e626322bc/co&s=json";
-    console.log("gettingData");  
-
-
-    $.ajax({
-        url: queryURL,
-        method: "GET",
-    }).then(function (response) {
-        console.log(response);
-        console.log("Time Lag: " + (Date.now() - start));
-    }).catch(function (error) {
-        console.log(error);
-    })
-
-});
+	$(document).on("click", "a", function(event) {
+		var reviewLookup = $(this).attr("id");
+		var ret = reviewLookup.replace('item','');
+		ret = parseInt(ret);
+		console.log(newArr[ret]);
+	});
 
