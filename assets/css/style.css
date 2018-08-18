@@ -31,9 +31,8 @@ h5 {
     border: 5px solid rgba(236, 137, 7, 0.856);
     border-radius: 20px;
     background-color:  rgba(247, 230, 2, 0.856);
-
     overflow: hidden;
-height: 15rem;
+	height: 20rem;
 }
 
 .card-body{
@@ -50,6 +49,20 @@ height: 15rem;
     color: #ffc136; 
 }
 
+a {
+	font-size: 1.2em;
+	font-weight: 500;
+	 color: #212529;
+}
+
+a:hover {
+	color: #22262a;
+}
+
+.address {
+	margin-left: 2px;
+}
+
 .bubbles {
     position: relative;
     top: 0;
@@ -61,7 +74,7 @@ height: 15rem;
 
 .bubbles2 {
     margin-left: 50px;
-    margin-top: 5px;  
+    margin-top: 11rem;  
 }
 
 .bubbles li {
