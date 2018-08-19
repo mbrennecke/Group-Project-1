@@ -1,5 +1,5 @@
 
-var audio = new Audio ("../Group-Project-1/assets/sounds/beersound.wav")
+var audio = new Audio ("../Group-Project-1/assets/sounds/beersound.mp3")
 
 var beermapAPI = "7d9d88201b9b82b413a7691e626322bc";
 
@@ -22,7 +22,7 @@ var reviews = "";
 		audio.play(audio);
 		var city = $("#city").val().trim();
 		$("#city").val("");
- 
+		console.log(audio);
 		yelpCity = city;
 
 		var queryURL = "http://beermapping.com/webservice/loccity/" + beermapAPI + "/"+ city +"&s=json";

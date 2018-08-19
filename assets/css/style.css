@@ -12,6 +12,7 @@ body {
     background-color:  rgba(247, 230, 2, 0.856);
     font-size: 4rem!important;
     margin: 10px;
+    margin-left: 2rem;
     overflow: hidden;
     
 }
@@ -21,12 +22,10 @@ body {
     src: url("../fonts/calangorevi.otf")
 }
 
-.container {
-    width: 100%;
-}
+
 
 .reviews {
-    /* position: relative; */
+    position: relative;
 	margin-left: 10px;
     border: 5px solid rgba(236, 137, 7, 0.856);
     border-radius: 20px;
@@ -38,7 +37,7 @@ body {
 }
 
 .map {
-    /* position: relative; */
+    position: relative;
 	margin-left: 10px;
     border: 5px solid rgba(236, 137, 7, 0.856);
     border-radius: 20px;
@@ -50,40 +49,36 @@ body {
 
 .card1 {
     position: relative;
-	margin-left: 10px;
+	margin-left: 2rem;
     border: 5px solid rgba(236, 137, 7, 0.856);
     border-radius: 20px;
     background-color:  rgba(247, 230, 2, 0.856);
     overflow: hidden;
-<<<<<<< HEAD
     height: 20rem;
 }
 
-.nav {
-    background-color: rgba(247, 230, 2, 0.856);
+
+footer {
     border-top: 5px solid rgba(236, 137, 7, 0.856);
+    background-color:  rgba(247, 230, 2, 0.856);
     margin-top: 20px;
-    position: fixed;
-    height: 50px;
-    bottom: 0;
     width: 100%;
-=======
-  height: 20rem;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    height: 3rem;
+    line-height: 5ch;
+}   
 
-    
+#main-container {
+    width: 83rem;
+
 }
 
-.maps {
-  
-
-	
->>>>>>> 9d75b2f693ec21c55a7a94fbc15fedcb41b77d55
-
-}
 
 .card-body{
 	overflow:auto;
-
 }
 
 .display-4 {
