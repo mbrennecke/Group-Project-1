@@ -72,6 +72,10 @@ a:hover {
 	margin-left: 2px;
 }
 
+.main-container {
+	width: 95%;
+}
+
 .bubbles {
     position: relative;
     top: 0;

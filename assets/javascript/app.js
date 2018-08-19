@@ -3,18 +3,10 @@ var audio = new Audio ("../Group-Project-1/assets/sounds/beersound.wav")
 
 var beermapAPI = "7d9d88201b9b82b413a7691e626322bc";
 
-var yelpClient = "ogfrOLDoPooXqSpvb0BqGw";
-
-var yelpAPI = "myQkJirdprwS7KhRTJdxdN17IMWvBUPgWEM0-2iucZ7xwZMV5Fa13rQlRQdZb0NHihit4qRM1oRlzEpDxWY68jgauMor9KGKVEZAaYghUvznKLcgzkATkoZOxLd1W3Yx";
-
 var googleMap = "AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A";
 
 var returnedObject;
 var newArr = [];
-
-var yelpLookUp;
-var yelpCity;
-var yelpState;
 
 
 //this function listens for click event of form to search city
@@ -26,11 +18,8 @@ var yelpState;
 		audio.play(audio);
 		var city = $("#city").val().trim();
 		$("#city").val("");
- 
-		yelpCity = city;
 
 		var queryURL = "http://beermapping.com/webservice/loccity/" + beermapAPI + "/"+ city +"&s=json";
-
 
 		$.ajax({
 			url: queryURL,
@@ -48,7 +37,6 @@ var yelpState;
 				var linkId = "item" + i;
 				$("#brew-list").append("<p><a href='#' class='beer-link' id='"+ linkId +"'>" + newArr[i].name + "</a><br><span class='address'>" + newArr[i].street + "<br>" + newArr[i].city + ", " + newArr[i].state + "</span></p>");
 			}
-			//yelpState = newArr[0].state;
 
 		}).catch(function (error) {
 			console.log(error);
@@ -56,15 +44,32 @@ var yelpState;
 
 	
 	});
-
-	$(document).on("click", "a", function(event) {
-
+	
+	function googleAPIcall(queryURL, call) {
 		$.ajax({
-			url: "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4&fields=name,rating,formatted_phone_number,opening_hours,price_level,reviews&key=AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A",
+			url: queryURL,
 			method: "GET",
 		}).then(function (response) {
-			console.log(response);
+			switch(call) {
+				case 1:
+					var placeId = response.candidates[0].place_id;
+					console.log(placeId);
+					break;
+				default:
+					break;
+			}
+		});
+	}
+
+	$(document).on("click", "a", function(event) {
+		var locId = $(this).attr("id");
+		var locIdNum = locId.replace("item", "");
+		var locIdNumParsed = parseInt(locIdNum);
+		var googleAddr = newArr[locIdNumParsed].name + "%20" + newArr[locIdNumParsed].street + "%20" + newArr[locIdNumParsed].city + "%20" + newArr[locIdNumParsed].state;
+		var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + googleAddr + "&inputtype=textquery&fields=place_id,geometry&key=AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A"; 
+		googleAPIcall(queryURL, 1);
+		
 	});
 	
-	});
+	
 
