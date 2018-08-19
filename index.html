@@ -21,21 +21,23 @@
 </head>
 
 <body>
+	<!-- <div class="container"> -->
 	<div class="jumbotron jumbotron-fluid">
-		<div class="container">
+		<div class="">
 			<h1 class="display-4">Beer Bound!</h1>
 			<p class="lead">"The Only Drinking Buddy You'll Ever Need!"</p>
 		</div>
 
 		<div class="row justify-content-md-center">
 			<div class="col col-md-6">
-				<div class="input-group mb-3">
-					<div class="input-group-prepend">
-						<button class="btn btn-info" type="button" id="map-api">City Search</button>
+				<form>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<button type="submit" class="btn btn-info" id="submit">City Search</button>
+						</div>
+						<input type="text" class="form-control" aria-label="City search" aria-describedby="map-api" id="city" for="map-api">
 					</div>
-					<input type="text" class="form-control" aria-label="City search" aria-describedby="map-api" id="city">
-				</div>
-
+				</form>
 			</div>
 			<ul class="bubbles">
 				<li></li>
@@ -64,9 +66,9 @@
 
 	<div class="row">
 		<div class="col-md-5">
-			<div class="card">
+			<div class="card1">
 				<div class="card-body">
-					<h5 class="card-title">Search Results:</h5>
+					<h3 class="card-title">Search Results:</h3>
 					<div id="brew-list"></div>
 					<ul class="bubbles bubbles2">
 						<li></li>
@@ -94,29 +96,32 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="card">
-			<div class="card-body reviews">
-				<div class="col-md-7">
+		<div class="col-md-7">
+			<div class="card reviews">
+				<div class="card-body ">
 					<div class="row">
 						<div class="col-md" id="yelp">
-							<p>I'm also a row col</p>
+							<p>Reviews:</p>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="card">
-				<div class="card-body map">
-					This is some text within a card body.
+			<div class="card map">
+				<div class="card-body ">
 					<div class="row">
 						<div class="col-md" id="map">
-							<p>I to am also a row col</p>
+							<p></p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
+
+	<nav id="footer" class="nav">
+		<a class="nav-link active" href="#">Beer Buddies &copy;</a>
+	</nav>
 
 
 	<script src="assets/javascript/app.js"></script>
