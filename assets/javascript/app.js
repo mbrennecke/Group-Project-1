@@ -1,5 +1,8 @@
+$(document).ready(function() {
+	$("#map-canvas").hide();
+	});
 
-var audio = new Audio ("../Group-Project-1/assets/sounds/beersound.wav")
+	var audio = new Audio ("../Group-Project-1/assets/sounds/beersound.wav")
 
 var beermapAPI = "7d9d88201b9b82b413a7691e626322bc";
 
@@ -7,7 +10,6 @@ var googleMap = "AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A";
 
 var returnedObject;
 var newArr = [];
-
 
 //this function listens for click event of form to search city
 	$("#submit").on("click", function (event) {
@@ -54,6 +56,7 @@ var newArr = [];
 				case 1:
 					var placeId = response.candidates[0].place_id;
 					googleReviewCall(placeId);
+					mapMaker(placeId);
 					break;
 				case 2:
 						console.log(queryURL);
@@ -64,11 +67,53 @@ var newArr = [];
 						for (var i=0; i<rating; i++){
 							$("#stars").append("&#11088;");
 						}
+						
 					break;
 				default:
 					break;
 			}
 		});
+	}
+	
+	function mapMaker(placeId) {
+		if(!placeId) {
+			placeId = "ChIJTWY5tdOaa4cRrfqurdOVGUQ";
+		}
+	$("#map-canvas").show();
+		var map;
+var infoWindow;
+var service;
+
+function initialize() {
+  var mapOptions = {
+    zoom: 15,
+    center: new google.maps.LatLng(39.7392, 104.9903)
+  };
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+  infoWindow = new google.maps.InfoWindow();
+  var service = new google.maps.places.PlacesService(map);
+  service.getDetails({
+    placeId: placeId
+  }, function(result, status) {
+    if (status != google.maps.places.PlacesServiceStatus.OK) {
+      alert(status);
+      return;
+    }
+    var marker = new google.maps.Marker({
+      map: map,
+      position: result.geometry.location
+    });
+    var address = result.adr_address;
+    var newAddr = address.split("</span>,");
+
+    infoWindow.setContent(result.name + "<br>" + newAddr[0] + "<br>" + newAddr[1] + "<br>" + newAddr[2]);
+    infoWindow.open(map, marker);
+  });
+
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
 	}
 
 	function googleReviewCall(placeId) {
