@@ -1,20 +1,16 @@
 
-var audio = new Audio ("../Group-Project-1/assets/sounds/beersound.wav")
+var audio = new Audio ("../Group-Project-1/assets/sounds/beersound.mp3")
 
 var beermapAPI = "7d9d88201b9b82b413a7691e626322bc";
 
-var yelpClient = "ogfrOLDoPooXqSpvb0BqGw";
-
-var yelpAPI = "myQkJirdprwS7KhRTJdxdN17IMWvBUPgWEM0-2iucZ7xwZMV5Fa13rQlRQdZb0NHihit4qRM1oRlzEpDxWY68jgauMor9KGKVEZAaYghUvznKLcgzkATkoZOxLd1W3Yx";
 
 var googleMap = "AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A";
-
 var returnedObject;
 var newArr = [];
+var maps = "";
+var reviews = "";
 
-var yelpLookUp;
-var yelpCity;
-var yelpState;
+
 
 
 //this function listens for click event of form to search city
@@ -26,7 +22,7 @@ var yelpState;
 		audio.play(audio);
 		var city = $("#city").val().trim();
 		$("#city").val("");
- 
+		console.log(audio);
 		yelpCity = city;
 
 		var queryURL = "http://beermapping.com/webservice/loccity/" + beermapAPI + "/"+ city +"&s=json";
