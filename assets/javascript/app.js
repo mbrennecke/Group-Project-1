@@ -45,7 +45,7 @@ var newArr = [];
 	
 	});
 	
-	function googleAPIcall(queryURL, call) {
+	function googleAPICall(queryURL, call) {
 		$.ajax({
 			url: queryURL,
 			method: "GET",
@@ -53,7 +53,17 @@ var newArr = [];
 			switch(call) {
 				case 1:
 					var placeId = response.candidates[0].place_id;
-					console.log(placeId);
+					googleReviewCall(placeId);
+					break;
+				case 2:
+						console.log(queryURL);
+						for (var i = 0; i<response.result.opening_hours.weekday_text.length; i++) {
+							$("#hours").append("<p>" + response.result.opening_hours.weekday_text[i] + "</p>");
+						};
+						var rating = Math.floor(response.result.rating);
+						for (var i=0; i<rating; i++){
+							$("#stars").append("&#11088;");
+						}
 					break;
 				default:
 					break;
@@ -61,13 +71,18 @@ var newArr = [];
 		});
 	}
 
+	function googleReviewCall(placeId) {
+		var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeId +"&fields=name,rating,formatted_phone_number,opening_hours,price_level,reviews&key=AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A";
+		googleAPICall(queryURL, 2);
+	}
+	
 	$(document).on("click", "a", function(event) {
 		var locId = $(this).attr("id");
 		var locIdNum = locId.replace("item", "");
 		var locIdNumParsed = parseInt(locIdNum);
 		var googleAddr = newArr[locIdNumParsed].name + "%20" + newArr[locIdNumParsed].street + "%20" + newArr[locIdNumParsed].city + "%20" + newArr[locIdNumParsed].state;
 		var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + googleAddr + "&inputtype=textquery&fields=place_id,geometry&key=AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A"; 
-		googleAPIcall(queryURL, 1);
+		googleAPICall(queryURL, 1);
 		
 	});
 	
