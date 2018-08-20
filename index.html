@@ -21,6 +21,7 @@
 </head>
 
 <body>
+	<div id ="main-container">
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
 			<h1 class="display-4">Beer Bound!</h1>
@@ -29,13 +30,13 @@
 
 		<div class="row justify-content-md-center">
 			<div class="col col-md-6">
-			<form>
-				<div class="input-group mb-3">
-					<div class="input-group-prepend">
-						<button type="submit" class="btn btn-info"  id="submit">City Search</button>
+				<form>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<button type="submit" class="btn btn-info" id="submit">City Search</button>
+						</div>
+						<input type="text" class="form-control" aria-label="City search" aria-describedby="map-api" id="city" for="map-api">
 					</div>
-					<input type="text" class="form-control" aria-label="City search" aria-describedby="map-api" id="city" for="map-api">
-				</div>
 				</form>
 			</div>
 			<ul class="bubbles">
@@ -65,7 +66,7 @@
 
 	<div class="row">
 		<div class="col-md-5">
-			<div class="card">
+			<div class="card1">
 				<div class="card-body">
 					<h3 class="card-title">Search Results:</h3>
 					<div id="brew-list"></div>
@@ -97,10 +98,11 @@
 		</div>
 
 		<div class="col-md-7">
-		<div class="card">
-			<div class="card-body reviews">
+		<div class="card  reviews">
+			<div class="card-body">
 				
 					<div class="row">
+
 						<div class="col-md" id="review">
 							<div class="row">
 								<div class="col-md-6" id="hours">
@@ -110,23 +112,32 @@
 									
 								</div>
 							</div>
+
 						</div>
 					</div>
 				</div>
 			</div>
+
 			<div class="card">
 				<div class="card-body map">
 					
 					<div class="row">
 						<div class="col-md" id="map-canvas">
 							
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
+<footer>
+		<div class="container ">
+			Beer Buddies! : Copyright &copy;
+		</div>
+	</footer>
 
 	<script src="assets/javascript/app.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A&libraries=places&callback=mapMaker"
