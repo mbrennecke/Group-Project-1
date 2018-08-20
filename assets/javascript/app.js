@@ -103,12 +103,24 @@ function initialize() {
     if (status != google.maps.places.PlacesServiceStatus.OK) {
       alert(status);
       return;
-    }
-    var marker = new google.maps.Marker({
+	}
+	
+		var iconBase = {
+		  url: "assets/images/beermapicon.png", 
+		  scaledSize: new google.maps.Size(30, 30), 
+		  origin: new google.maps.Point(0, 0), 
+		  anchor: new google.maps.Point(0, 0) 
+		};
+	
+	
+	var marker = new google.maps.Marker({
       map: map,
-      position: result.geometry.location
-    });
-    var address = result.adr_address;
+	  position: result.geometry.location,
+	  icon: iconBase,
+	
+	});
+	
+	var address = result.adr_address;
     var newAddr = address.split("</span>,");
 
     infoWindow.setContent(result.name + "<br>" + newAddr[0] + "<br>" + newAddr[1] + "<br>" + newAddr[2]);
