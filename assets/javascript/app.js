@@ -51,7 +51,7 @@ var reviews = "";
 		})
 
 	
-	})
+	});
 	
 	function googleAPICall(queryURL, call) {
 		$.ajax({

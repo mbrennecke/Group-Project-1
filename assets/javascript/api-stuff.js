@@ -8,7 +8,7 @@
                 'Authorization': 'Bearer myQkJirdprwS7KhRTJdxdN17IMWvBUPgWEM0-2iucZ7xwZMV5Fa13rQlRQdZb0NHihit4qRM1oRlzEpDxWY68jgauMor9KGKVEZAaYghUvznKLcgzkATkoZOxLd1W3Yx',
             },
             method: 'GET',
-            dataType: 'json', 
+            dataType: 'json',
             success: function (data) {
                 console.log(data);
             }
