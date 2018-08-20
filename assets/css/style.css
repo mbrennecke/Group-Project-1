@@ -40,13 +40,13 @@ body {
 }
 
 .map {
-     position: relative;
+    position: relative;
 	margin-left: 10px;
     border: 5px solid rgba(236, 137, 7, 0.856);
     border-radius: 20px;
     background-color:  rgba(247, 230, 2, 0.856);
-    height: 20rem;
-    margin: 10px 10px 0 10px;
+    /* height: 800px; */
+    margin: 10px 10px 200px 10px;
 }
 
 .card1 {
@@ -112,7 +112,7 @@ a:hover {
 	margin-left: 2px;
 }
 #map-canvas {
-        height: 15rem;  
+        height: 800px;  
         width: 100%;  
        }
 	   
