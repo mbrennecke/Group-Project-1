@@ -69,6 +69,7 @@ var reviews = "";
 						for (var i = 0; i<response.result.opening_hours.weekday_text.length; i++) {
 							$("#hours").append("<p>" + response.result.opening_hours.weekday_text[i] + "</p>");
 						};
+						
 						var rating = Math.floor(response.result.rating);
 						for (var i=0; i<rating; i++){
 							$("#stars").append("&#11088;");
@@ -126,6 +127,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
 	}
 	
 	$(document).on("click", "a", function(event) {
+		$("#stars").empty();
+		$("#hours").empty();
 		var locId = $(this).attr("id");
 		var locIdNum = locId.replace("item", "");
 		var locIdNumParsed = parseInt(locIdNum);
