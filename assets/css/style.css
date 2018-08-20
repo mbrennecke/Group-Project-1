@@ -103,7 +103,10 @@ a:hover {
 .address {
 	margin-left: 2px;
 }
-
+#map-canvas {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
 .bubbles {
     position: relative;
     top: 0;

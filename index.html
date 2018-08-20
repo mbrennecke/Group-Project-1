@@ -102,17 +102,29 @@
 			<div class="card-body">
 				
 					<div class="row">
-						<div class="col-md" id="yelp">
-							<p>Reviews:</p>
+
+						<div class="col-md" id="review">
+							<div class="row">
+								<div class="col-md-6" id="hours">
+									
+								</div>
+								<div class="col-md-6" id="stars">
+									
+								</div>
+							</div>
+
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="card map">
-				<div class="card-body ">
+
+			<div class="card">
+				<div class="card-body map">
+					
 					<div class="row">
-						<div class="col-md" id="map">
-							<p></p>
+						<div class="col-md" id="map-canvas">
+							
+
 						</div>
 					</div>
 				</div>
@@ -128,6 +140,8 @@
 	</footer>
 
 	<script src="assets/javascript/app.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A&libraries=places&callback=mapMaker"
+        async defer></script>
 </body>
 
 </html>
