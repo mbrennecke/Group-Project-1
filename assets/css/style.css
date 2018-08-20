@@ -45,8 +45,7 @@ body {
     overflow: hidden;
     height: 20rem;
     margin: 10px 10px 0 10px;
-    /* padding-left: 10px;
-    padding-right: 10px; */
+   
 }
 
 .card1 {
@@ -84,9 +83,7 @@ footer {
     border-radius: 15px;
     margin-left: 12px;
     margin-right: 15px;
-    
 }
-
 
 .card-body{
 	overflow:auto;
