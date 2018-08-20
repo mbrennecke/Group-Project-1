@@ -31,7 +31,7 @@ body {
     border-radius: 20px;
     background-color:  rgba(247, 230, 2, 0.856);
     overflow: hidden;
-    height: 10rem;
+    height: 14rem;
     margin-right: 10px;
 
 }
@@ -45,8 +45,6 @@ body {
     overflow: hidden;
     height: 20rem;
     margin: 10px 10px 0 10px;
-    /* padding-left: 10px;
-    padding-right: 10px; */
 }
 
 .card1 {
@@ -56,7 +54,7 @@ body {
     border-radius: 20px;
     background-color:  rgba(247, 230, 2, 0.856);
 	overflow: auto;
-    height: 20rem;
+    height: 24rem;
 }
 
 .alert {
@@ -80,16 +78,8 @@ footer {
 
 #main-container {
     width: 83rem;
-    padding-bottom: 2rem;
+    padding-bottom: 4rem;
 
-}
-
-
-#map-canvas {
-    border-radius: 15px;
-    margin-left: 12px;
-    margin-right: 15px;
-    
 }
 
 
@@ -290,5 +280,4 @@ ul {
 	}
 
 }
-
 
