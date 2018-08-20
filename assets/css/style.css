@@ -42,10 +42,9 @@
     border: 5px solid rgba(236, 137, 7, 0.856);
     border-radius: 20px;
     background-color:  rgba(247, 230, 2, 0.856);
-    overflow: hidden;
+	overflow: auto;
     height: 20rem;
 }
-
 
 footer {
     border-top: 5px solid rgba(236, 137, 7, 0.856);
@@ -62,6 +61,7 @@ footer {
 
 #main-container {
     width: 83rem;
+    padding-bottom: 2rem;
 
 }
 
