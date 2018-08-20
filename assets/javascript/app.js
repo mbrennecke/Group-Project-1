@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	$("#map-canvas").hide();
+	$("#no-city").hide();
 	
 
  var placeId = "ChIJTWY5tdOaa4cRrfqurdOVGUQ";
@@ -22,6 +23,7 @@ var map;
 //this function listens for click event of form to search city
 	$("#submit").on("click", function (event) {
 		event.preventDefault();
+		$("#no-city").hide();
 		if ($("#city").val() == ""){
 			return;
 		}
@@ -39,6 +41,11 @@ var map;
 			$("#brew-list").empty();
 			newArr = [];
 			returnedObject = response;
+			if (response[0].city == null) {
+				$("#bad-city").append(city);
+				$("#no-city").show();
+				
+			}
 			for (var i=0; i<response.length; i++){
 				if (response[i].status == "Brewpub" || response[i].status == "Brewery") {
 					newArr.push(response[i]);
@@ -64,12 +71,12 @@ var map;
 			switch(call) {
 				case 1:
 					placeId = response.candidates[0].place_id;
-					console.log(placeId + "call 1");
+					
 					googleReviewCall();
 					
 					break;
 				case 2:
-						console.log(queryURL);
+					
 						for (var i = 0; i<response.result.opening_hours.weekday_text.length; i++) {
 							$("#hours").append("<p>" + response.result.opening_hours.weekday_text[i] + "</p>");
 						};
@@ -102,8 +109,7 @@ var map;
 
 				  infoWindow = new google.maps.InfoWindow();
 				  var service = new google.maps.places.PlacesService(map);
-				  console.log(placeId + "call 2");
-				  //place = placeId;
+				  
 				  service.getDetails({
 					placeId: placeId
 				  }, function(result, status) {
