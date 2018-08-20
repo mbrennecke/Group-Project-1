@@ -3,6 +3,10 @@ body {
     font-family: calangorevi;
 }
 
+#logo {
+    width: 300px;
+}
+
 .jumbotron {
     font-family: calangorevi;
     text-align: center;
