@@ -2,6 +2,8 @@ $(document).ready(function() {
 	$("#map-canvas").hide();
 	});
 
+ var placeId = "ChIJTWY5tdOaa4cRrfqurdOVGUQ";
+
 
 var audio = new Audio ("../Group-Project-1/assets/sounds/beersound.mp3")
 
@@ -82,10 +84,8 @@ var reviews = "";
 		});
 	}
 	
-	function mapMaker(placeId) {
-		if(!placeId) {
-			placeId = "ChIJTWY5tdOaa4cRrfqurdOVGUQ";
-		}
+	function mapMaker() {
+		
 	$("#map-canvas").show();
 		var map;
 var infoWindow;
@@ -123,7 +123,7 @@ function initialize() {
 google.maps.event.addDomListener(window, 'load', initialize);
 	}
 
-	function googleReviewCall(placeId) {
+	function googleReviewCall() {
 		var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeId +"&fields=name,rating,formatted_phone_number,opening_hours,price_level,reviews&key=AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A";
 		googleAPICall(queryURL, 2);
 	}
