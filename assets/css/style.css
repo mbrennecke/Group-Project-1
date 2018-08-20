@@ -41,7 +41,6 @@ body {
     border: 5px solid rgba(236, 137, 7, 0.856);
     border-radius: 20px;
     background-color:  rgba(247, 230, 2, 0.856);
-    overflow: hidden;
     height: 20rem;
     margin: 10px 10px 0 10px;
 }
@@ -77,6 +76,7 @@ footer {
 }   
 
 .container {
+	
 	padding-bottom: 4rem;
 }
 
@@ -108,9 +108,10 @@ a:hover {
 	margin-left: 2px;
 }
 #map-canvas {
-        height: 100%;  /* The height is 400 pixels */
-        width: 100%;  /* The width is the width of the web page */
+        height: 15rem;  
+        width: 100%;  
        }
+	   
 .bubbles {
     position: relative;
     top: 0;
