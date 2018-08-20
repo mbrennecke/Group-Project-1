@@ -78,10 +78,14 @@ var map;
 				case 2:
 					
 						for (var i = 0; i<response.result.opening_hours.weekday_text.length; i++) {
-							$("#hours").append("<p>" + response.result.opening_hours.weekday_text[i] + "</p>");
+							$("#hours").append(response.result.opening_hours.weekday_text[i] + "<br>");
 						};
 						
+						$("#stars").append("<p>"+response.result.name +"<br>"+response.result.formatted_address+"</p>");
+						
+						$("#stars").append("Rating ");
 						var rating = Math.floor(response.result.rating);
+						
 						for (var i=0; i<rating; i++){
 							$("#stars").append("&#11088;");
 							
@@ -96,7 +100,7 @@ var map;
 	
 	
 		
-
+			
 				
 
 				function initialize() {
@@ -117,18 +121,17 @@ var map;
 					  alert(status);
 					  return;
 					}
-						var iconBase = {
+					var iconBase = {
 		  url: "assets/images/beermapicon.png", 
 		  scaledSize: new google.maps.Size(30, 30), 
 		  origin: new google.maps.Point(0, 0), 
 		  anchor: new google.maps.Point(0, 0) 
 		};
-	
-	
-	var marker = new google.maps.Marker({
+					var marker = new google.maps.Marker({
       map: map,
 	  position: result.geometry.location,
 	  icon: iconBase,
+					});
 					var address = result.adr_address;
 					var newAddr = address.split("</span>,");
 
@@ -142,10 +145,9 @@ var map;
 			
 
 			function googleReviewCall() {
-				var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeId +"&fields=name,rating,formatted_phone_number,opening_hours,price_level,reviews&key=AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A";
+				var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeId +"&fields=name,rating,address_components,formatted_address,formatted_phone_number,opening_hours,price_level,reviews&key=AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A";
 				googleAPICall(queryURL, 2);
 			}
-
 	
 	$(document).on("click", "a", function(event) {
 		
@@ -161,4 +163,3 @@ var map;
 	});
 	
 	});
-
