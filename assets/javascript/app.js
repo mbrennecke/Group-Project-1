@@ -4,10 +4,7 @@ $(document).ready(function() {
 
 
 var audio = new Audio ("../Group-Project-1/assets/sounds/beersound.mp3")
-
 var beermapAPI = "7d9d88201b9b82b413a7691e626322bc";
-
-
 
 var googleMap = "AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A";
 var returnedObject;
