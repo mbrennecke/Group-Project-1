@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	$("#map-canvas").hide();
-	});
+	$("#no-city").hide();
+	
 
  var placeId = "ChIJTWY5tdOaa4cRrfqurdOVGUQ";
 
@@ -13,12 +14,16 @@ var returnedObject;
 var newArr = [];
 var maps = "";
 var reviews = "";
+var map;
+				var infoWindow;
+				var service;
 
 
 
 //this function listens for click event of form to search city
 	$("#submit").on("click", function (event) {
 		event.preventDefault();
+		$("#no-city").hide();
 		if ($("#city").val() == ""){
 			return;
 		}
@@ -36,6 +41,11 @@ var reviews = "";
 			$("#brew-list").empty();
 			newArr = [];
 			returnedObject = response;
+			if (response[0].city == null) {
+				$("#bad-city").append(city);
+				$("#no-city").show();
+				
+			}
 			for (var i=0; i<response.length; i++){
 				if (response[i].status == "Brewpub" || response[i].status == "Brewery") {
 					newArr.push(response[i]);
@@ -60,21 +70,27 @@ var reviews = "";
 		}).then(function (response) {
 			switch(call) {
 				case 1:
-					var placeId = response.candidates[0].place_id;
-					googleReviewCall(placeId);
-					mapMaker(placeId);
+					placeId = response.candidates[0].place_id;
+					
+					googleReviewCall();
+					
 					break;
 				case 2:
-						console.log(queryURL);
+					
 						for (var i = 0; i<response.result.opening_hours.weekday_text.length; i++) {
-							$("#hours").append("<p>" + response.result.opening_hours.weekday_text[i] + "</p>");
+							$("#hours").append(response.result.opening_hours.weekday_text[i] + "<br>");
 						};
 						
+						$("#stars").append("<p>"+response.result.name +"<br>"+response.result.formatted_address+"</p>");
+						
+						$("#stars").append("Rating ");
 						var rating = Math.floor(response.result.rating);
+						
 						for (var i=0; i<rating; i++){
 							$("#stars").append("&#11088;");
+							
 						}
-						
+						initialize();
 					break;
 				default:
 					break;
@@ -82,51 +98,59 @@ var reviews = "";
 		});
 	}
 	
-	function mapMaker() {
+	
 		
-	$("#map-canvas").show();
-		var map;
-var infoWindow;
-var service;
+			
+				
 
-function initialize() {
-  var mapOptions = {
-    zoom: 15,
-    center: new google.maps.LatLng(39.7392, 104.9903)
-  };
-  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+				function initialize() {
+					$("#map-canvas").show();
+				  var mapOptions = {
+					zoom: 15,
+					center: new google.maps.LatLng(39.7392, 104.9903)
+				  };
+				  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-  infoWindow = new google.maps.InfoWindow();
-  var service = new google.maps.places.PlacesService(map);
-  service.getDetails({
-    placeId: placeId
-  }, function(result, status) {
-    if (status != google.maps.places.PlacesServiceStatus.OK) {
-      alert(status);
-      return;
-    }
-    var marker = new google.maps.Marker({
+				  infoWindow = new google.maps.InfoWindow();
+				  var service = new google.maps.places.PlacesService(map);
+				  
+				  service.getDetails({
+					placeId: placeId
+				  }, function(result, status) {
+					if (status != google.maps.places.PlacesServiceStatus.OK) {
+					  alert(status);
+					  return;
+					}
+					var iconBase = {
+		  url: "assets/images/beermapicon.png", 
+		  scaledSize: new google.maps.Size(30, 30), 
+		  origin: new google.maps.Point(0, 0), 
+		  anchor: new google.maps.Point(0, 0) 
+		};
+					var marker = new google.maps.Marker({
       map: map,
-      position: result.geometry.location
-    });
-    var address = result.adr_address;
-    var newAddr = address.split("</span>,");
+	  position: result.geometry.location,
+	  icon: iconBase,
+					});
+					var address = result.adr_address;
+					var newAddr = address.split("</span>,");
 
-    infoWindow.setContent(result.name + "<br>" + newAddr[0] + "<br>" + newAddr[1] + "<br>" + newAddr[2]);
-    infoWindow.open(map, marker);
-  });
+					infoWindow.setContent(result.name + "<br>" + newAddr[0] + "<br>" + newAddr[1] + "<br>" + newAddr[2]);
+					infoWindow.open(map, marker);
+				  });
 
-}
+				}
 
-google.maps.event.addDomListener(window, 'load', initialize);
-	}
+				
+			
 
-	function googleReviewCall() {
-		var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeId +"&fields=name,rating,formatted_phone_number,opening_hours,price_level,reviews&key=AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A";
-		googleAPICall(queryURL, 2);
-	}
+			function googleReviewCall() {
+				var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeId +"&fields=name,rating,address_components,formatted_address,formatted_phone_number,opening_hours,price_level,reviews&key=AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A";
+				googleAPICall(queryURL, 2);
+			}
 	
 	$(document).on("click", "a", function(event) {
+		
 		$("#stars").empty();
 		$("#hours").empty();
 		var locId = $(this).attr("id");
@@ -138,5 +162,4 @@ google.maps.event.addDomListener(window, 'load', initialize);
 		
 	});
 	
-	
-
+	});

@@ -38,6 +38,9 @@
 						<input type="text" class="form-control" aria-label="City search" aria-describedby="map-api" id="city" for="map-api">
 					</div>
 				</form>
+				<div class="alert alert-danger" role="alert" id="no-city">
+				  Sorry, <span id="bad-city"></span> could not be found, please try again.
+				</div>
 			</div>
 			<ul class="bubbles">
 				<li></li>
@@ -83,7 +86,7 @@
 						<div class="col-md" id="review">
 							<div class="row">
 								<div class="col-md-6" id="hours">
-									
+									Review:
 								</div>
 								<div class="col-md-6" id="stars">
 									
@@ -96,8 +99,9 @@
 			</div>
 
 			<div class="card map">
-				<div class="card-body ">
-					
+
+				<div class="card-body">
+					Map:
 					<div class="row">
 						<div class="col-md" id="map-canvas">
 							
@@ -112,13 +116,13 @@
 
 <footer>
 	
-		<div class="container ">
-			Beer Buddies!&copy;
+		<div>
+			Beer Buddies! &copy 2018
 		</div>
 	</footer>
 
 	<script src="assets/javascript/app.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A&libraries=places&callback=mapMaker"
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A&libraries=places"
         async defer></script>
 </body>
 
