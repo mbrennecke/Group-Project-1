@@ -96,7 +96,7 @@ var map;
 	
 	
 		
-			
+
 				
 
 				function initialize() {
@@ -117,10 +117,18 @@ var map;
 					  alert(status);
 					  return;
 					}
-					var marker = new google.maps.Marker({
-					  map: map,
-					  position: result.geometry.location
-					});
+						var iconBase = {
+		  url: "assets/images/beermapicon.png", 
+		  scaledSize: new google.maps.Size(30, 30), 
+		  origin: new google.maps.Point(0, 0), 
+		  anchor: new google.maps.Point(0, 0) 
+		};
+	
+	
+	var marker = new google.maps.Marker({
+      map: map,
+	  position: result.geometry.location,
+	  icon: iconBase,
 					var address = result.adr_address;
 					var newAddr = address.split("</span>,");
 
@@ -137,6 +145,7 @@ var map;
 				var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeId +"&fields=name,rating,formatted_phone_number,opening_hours,price_level,reviews&key=AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A";
 				googleAPICall(queryURL, 2);
 			}
+
 	
 	$(document).on("click", "a", function(event) {
 		
