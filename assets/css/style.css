@@ -3,6 +3,10 @@ body {
     font-family: calangorevi;
 }
 
+#logo {
+    width: 35%;
+}
+
 .jumbotron {
     font-family: calangorevi;
     text-align: center;
@@ -42,11 +46,13 @@ body {
 
 .map {
 
+
     border: 5px solid rgba(236, 137, 7, 0.856);
     border-radius: 20px;
     background-color:  rgba(247, 230, 2, 0.856);
     height: 20rem;
     margin: 1rem 2rem 0 2rem;
+
 }
 
 .card1 {
@@ -118,7 +124,7 @@ a:hover {
 	margin-left: 2px;
 }
 #map-canvas {
-        height: 15rem;  
+        height: 800px;  
         width: 100%;  
        }
 	   
