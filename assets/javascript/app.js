@@ -19,9 +19,9 @@ $(document).ready(function() {
 	
 
  var placeId = "ChIJTWY5tdOaa4cRrfqurdOVGUQ";
-	var userId;
+	var userId = localStorage.getItem("username");
 var x = document.cookie;
-console.log(x);
+
 var audio = new Audio ("../Group-Project-1/assets/sounds/beersound.mp3")
 var beermapAPI = "7d9d88201b9b82b413a7691e626322bc";
 
@@ -185,26 +185,30 @@ var map;
 	var userFavs = [];
 
 	function userFavsUpdate() {
-		userFavs.push(placeId);
-		var newPostRef = userVal.push({user:userId,
-										fav: userFavs
+		userVal.once("value", function(childSnapshot) {
+			
 		});
+
 	}
 	
 	$(document).on("click", "#fav-btn", function(event) {
+		userFavs.push(placeId);
 			var query = userVal.orderByKey();
 			query.once("value").then(function(snapshot){
 			snapshot.forEach(function(childSnapshot) {
 				if (childSnapshot.val().user == userId) {
 					checkVal = false;
+					userFavsUpdate();
 				}
 			});
 			if (checkVal){
 				userId = Date.now();
 				document.cookie = "username=" + userId + "; expires=Fri, 23 Aug 2019 00:00:00 UTC;"
+				localStorage.setItem("username", userId);
+				userFavsUpdate();
 			}
 			});
-			
+			console.log(userFavs);
 	});
 	
 	});
