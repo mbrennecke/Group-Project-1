@@ -180,19 +180,24 @@ var map;
 	});
 	var userVal = database.ref("/userID");
 	var checkVal = true;
+	var userFavs = [];
+
 	$(document).on("click", "#fav-btn", function(event) {
 			var query = userVal.orderByKey();
 			query.once("value").then(function(snapshot){
 			snapshot.forEach(function(childSnapshot) {
 				if (childSnapshot.val().user == userId) {
 					checkVal = false;
-					alert("i worked");
+
 				}
 			});
 			if (checkVal){
-				alert("i didn't work");
 				userId = Date.now();
-				userVal.push({user:userId});
+				userFavs.push(placeId);
+				var newPostRef = userVal.push({user:userId,
+												fav: userFavs
+				});
+
 			}
 			});
 			
