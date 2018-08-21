@@ -99,6 +99,7 @@ var map;
 							$("#hours-list").append('<li>' + response.result.opening_hours.weekday_text[i] + "</li>");
 						};
 						
+						$("#review").append("<p>Review:</p>");
 						$("#review").append("<p>"+response.result.name +"<br>"+response.result.formatted_address+"</p>");
 						$("#review").append("<p id='stars'>");
 						$("#stars").append("Rating ");
@@ -181,6 +182,7 @@ var map;
 		
 	});
 	var userVal = database.ref("/userID");
+	var userFavsDB = database.ref("/favs");
 	var checkVal = true;
 	var userFavs = [];
 
@@ -195,19 +197,19 @@ var map;
 		});
 	}
 	
+	var onIce = false;
+	
 	$(document).on("click", "#fav-btn", function(event) {
+		if (onIce) {
 		
 		if (userFavs.indexOf(placeId) < 0){
 			userFavs.push(placeId);
 			}
-			var query = userVal.orderByKey();
-			query.once("value").then(function(snapshot){
-			snapshot.forEach(function(childSnapshot) {
-				if (childSnapshot.val().user == userId) {
-					checkVal = false;
-					userFavsUpdate();
-				}
-			});
+			//var query = userVal.orderByChild("user");
+			 userVal.orderByChild("user").equalTo(userId).on("child_added", function(snapshot) {
+				  console.log(snapshot.key);
+				});
+		
 			if (checkVal){
 				userId = Date.now();
 				//document.cookie = "username=" + userId + "; expires=Fri, 23 Aug 2019 00:00:00 UTC;";
@@ -217,8 +219,21 @@ var map;
 					favs: userFavs		
 				});
 			}
+		}
+			
+		
+			if (userFavs.indexOf(placeId) < 0){
+				userFavs.push(placeId);
+				userFavsDB.push({
+					favs: placeId
+				});
+			}
+			userVal.on("child_added", function(childSnapshot){
+				append
+			});
+		
 			});
 			
-	});
+	
 	
 	});
