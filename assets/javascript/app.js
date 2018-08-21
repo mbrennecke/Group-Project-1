@@ -33,7 +33,7 @@ var reviews = "";
 var map;
 				var infoWindow;
 				var service;
-
+var faveBrew;
 			
 
 
@@ -49,7 +49,7 @@ var map;
 		$("#city").val("");
 
 
-		var queryURL = "http://beermapping.com/webservice/loccity/" + beermapAPI + "/"+ city +"&s=json";
+		var queryURL = "https://beermapping.com/webservice/loccity/" + beermapAPI + "/"+ city +"&s=json";
 
 		$.ajax({
 			url: queryURL,
@@ -93,14 +93,13 @@ var map;
 					
 					break;
 				case 2:
-						$("#hours").append('<p>Hours:</p>');
 						$("#hours").append('<ul id="hours-list">');
 						for (var i = 0; i<response.result.opening_hours.weekday_text.length; i++) {
 							$("#hours-list").append('<li>' + response.result.opening_hours.weekday_text[i] + "</li>");
 						};
 						
-						$("#review").append("<p>Review:</p>");
 						$("#review").append("<p>"+response.result.name +"<br>"+response.result.formatted_address+"</p>");
+						faveBrew = response.result.name;
 						$("#review").append("<p id='stars'>");
 						$("#stars").append("Rating ");
 						var rating = Math.floor(response.result.rating);
@@ -169,7 +168,7 @@ var map;
 				googleAPICall(queryURL, 2);
 			}
 	
-	$(document).on("click", "a", function(event) {
+	$(document).on("click", ".beer-link", function(event) {
 		
 		$("#review").empty();
 		$("#hours").empty();
@@ -200,40 +199,30 @@ var map;
 	var onIce = false;
 	
 	$(document).on("click", "#fav-btn", function(event) {
-		if (onIce) {
 		
-		if (userFavs.indexOf(placeId) < 0){
-			userFavs.push(placeId);
-			}
-			//var query = userVal.orderByChild("user");
-			 userVal.orderByChild("user").equalTo(userId).on("child_added", function(snapshot) {
-				  console.log(snapshot.key);
-				});
-		
-			if (checkVal){
-				userId = Date.now();
-				//document.cookie = "username=" + userId + "; expires=Fri, 23 Aug 2019 00:00:00 UTC;";
-				localStorage.setItem("username", userId);
-				userVal.push({
-					user:userId,
-					favs: userFavs		
-				});
-			}
-		}
 			
 		
 			if (userFavs.indexOf(placeId) < 0){
 				userFavs.push(placeId);
 				userFavsDB.push({
-					favs: placeId
+					favs: placeId,
+					brewery: faveBrew
 				});
 			}
-			userVal.on("child_added", function(childSnapshot){
-				append
-			});
-		
+			
 			});
 			
+			$(document).on("click", ".fav-list", function(event) {
+				 placeId = $(this).attr("id");
+				googleReviewCall();
+				});
+			
+			
+	database.ref("favs").on("child_added", function(childSnapshot){
+		var favBrewery = childSnapshot.val().brewery;
+		$("#favs").append('<li><a href="#" class="fav-list" id="'+childSnapshot.val().favs+'">' + favBrewery + '</a></li>');
+	});
+		
 	
 	
 	});

@@ -29,15 +29,13 @@ body {
 
 
 .reviews {
-    padding: 0 20px 0 20px;
     position: relative;
-	margin-left: 2rem;
     border: 5px solid rgba(236, 137, 7, 0.856);
     border-radius: 20px;
     background-color:  rgba(247, 230, 2, 0.856);
     overflow: hidden;
     height: 17rem;
-   
+   margin-bottom: 1rem;
 
 }
 
@@ -47,7 +45,7 @@ body {
     border-radius: 20px;
     background-color:  rgba(247, 230, 2, 0.856);
     height: 20rem;
-    margin: 1rem 2rem 0 2rem;
+    margin-bottom: 1rem;
 }
 
 .card1 {
@@ -63,8 +61,8 @@ body {
     border-radius: 20px;
     background-color:  rgba(247, 230, 2, 0.856);
 	overflow: auto;
-    height: 12rem;
-	margin-bottom: 2rem;
+    height: 13rem;
+	margin-bottom: 1rem;
 }
 
 .alert {
@@ -109,6 +107,10 @@ a {
 	font-size: 1.2em;
 	font-weight: 500;
 	 color: #212529;
+}
+
+li {
+	list-style-type: none;
 }
 
 a:hover {
