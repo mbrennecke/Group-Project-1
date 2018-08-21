@@ -15,15 +15,18 @@
 	<script src=" https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	 crossorigin="anonymous">
+	 <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
 	<link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
 	<link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png"/>
+
 
 </head>
 
 <body>
-	<div class="jumbotron jumbotron-fluid">
-		<div class="container">
-			<img id="logo" src="assets/images/logo.png" alt="logo">
+	<div class="container">
+	<div class="jumbotron ">
+		<div >
+			<h1 class="display-4">Beer Bound!</h1>
 			<p class="lead">"The Only Drinking Buddy You'll Ever Need!"</p>
 		</div>
 
@@ -32,7 +35,7 @@
 				<form>
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
-							<button type="submit" class="btn btn-info" id="submit">City Search</button>
+							<button type="submit" class="btn btn-info btn-search" id="submit">City Search</button>
 						</div>
 						<input type="text" class="form-control" aria-label="City search" aria-describedby="map-api" id="city" for="map-api">
 					</div>
@@ -74,20 +77,24 @@
 					<div id="brew-list"></div>
 				</div>
 			</div>
+			<div class="card card2">
+				<div class="card-body">
+					Favorites:
+					<div id="favs"></div>
+				</div>
+			</div>
 		</div>
 
 		<div class="col-md-7">
 		<div class="card  reviews">
 			<div class="card-body">
-				
 					<div class="row">
-
-						<div class="col-md" id="review">
+						<div class="col-md" >
 							<div class="row">
-								<div class="col-md-6" id="hours">
+								<div class="col-md-6" id="review">
 									Review:
 								</div>
-								<div class="col-md-6" id="stars">
+								<div class="col-md-6" id="hours">
 									
 								</div>
 							</div>
@@ -114,16 +121,11 @@
 </div>
 
 <footer>
-<<<<<<< HEAD
-		<a href="https://github.com/JPMatlock/Group-Project-1">
-		<div class="container ">
-=======
 	
 		<div>
->>>>>>> 6bf34adf5726c55da35eb2967413a3b31b0d237c
+		
 			Beer Buddies! &copy 2018
 		</div>
-	</a>
 	</footer>
 
 	<script src="assets/javascript/app.js"></script>
