@@ -93,13 +93,11 @@ var map;
 					
 					break;
 				case 2:
-						$("#hours").append('<p>Hours:</p>');
 						$("#hours").append('<ul id="hours-list">');
 						for (var i = 0; i<response.result.opening_hours.weekday_text.length; i++) {
 							$("#hours-list").append('<li>' + response.result.opening_hours.weekday_text[i] + "</li>");
 						};
 						
-						$("#review").append("<p>Review:</p>");
 						$("#review").append("<p>"+response.result.name +"<br>"+response.result.formatted_address+"</p>");
 						$("#review").append("<p id='stars'>");
 						$("#stars").append("Rating ");
@@ -229,7 +227,7 @@ var map;
 				});
 			}
 			userVal.on("child_added", function(childSnapshot){
-				append
+				$("#favs").append('<p><a href="#">' + childSnapshot.val().favs + '</a></p>');
 			});
 		
 			});
