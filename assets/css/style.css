@@ -22,37 +22,47 @@ body {
     src: url("../fonts/calangorevi.otf")
 }
 
+#hours-list {
+	margin: 0;
+	padding: 0;
+}
+
 
 .reviews {
     position: relative;
-	margin-left: 10px;
+	margin-left: 2rem;
     border: 5px solid rgba(236, 137, 7, 0.856);
     border-radius: 20px;
     background-color:  rgba(247, 230, 2, 0.856);
     overflow: hidden;
-    height: 14rem;
-    margin-right: 10px;
+    height: 17rem;
+   
 
 }
 
 .map {
-     position: relative;
-	margin-left: 10px;
+
     border: 5px solid rgba(236, 137, 7, 0.856);
     border-radius: 20px;
     background-color:  rgba(247, 230, 2, 0.856);
     height: 20rem;
-    margin: 10px 10px 0 10px;
+    margin: 1rem 2rem 0 2rem;
 }
 
 .card1 {
-    position: relative;
-
     border: 5px solid rgba(236, 137, 7, 0.856);
     border-radius: 20px;
     background-color:  rgba(247, 230, 2, 0.856);
 	overflow: auto;
     height: 24rem;
+	margin-bottom: 1rem;
+}
+.card2 {
+    border: 5px solid rgba(236, 137, 7, 0.856);
+    border-radius: 20px;
+    background-color:  rgba(247, 230, 2, 0.856);
+	overflow: auto;
+    height: 12rem;
 	margin-bottom: 2rem;
 }
 
@@ -89,7 +99,7 @@ footer {
     font-size: 4.5rem;  
 }
 
-.btn {
+.btn-search {
 	background-color: #212529;
     color: #ffc136; 
 }

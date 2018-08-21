@@ -1,10 +1,25 @@
 $(document).ready(function() {
+	
+	var config = {
+    apiKey: "AIzaSyBtF6DH3zWElPvboPT3NLs2yGIQPG8xfE8",
+    authDomain: "beer-bound-69b80.firebaseapp.com",
+    databaseURL: "https://beer-bound-69b80.firebaseio.com",
+    projectId: "beer-bound-69b80",
+    storageBucket: "beer-bound-69b80.appspot.com",
+    messagingSenderId: "445520032555"
+  };
+  firebase.initializeApp(config);
+
+  
+   var database = firebase.database();
+  
+  
 	$("#map-canvas").hide();
 	$("#no-city").hide();
 	
 
  var placeId = "ChIJTWY5tdOaa4cRrfqurdOVGUQ";
-
+	var userId;
 
 var audio = new Audio ("../Group-Project-1/assets/sounds/beersound.mp3")
 var beermapAPI = "7d9d88201b9b82b413a7691e626322bc";
@@ -76,13 +91,14 @@ var map;
 					
 					break;
 				case 2:
-					
+						$("#hours").append('<p>Hours:</p>');
+						$("#hours").append('<ul id="hours-list">');
 						for (var i = 0; i<response.result.opening_hours.weekday_text.length; i++) {
-							$("#hours").append(response.result.opening_hours.weekday_text[i] + "<br>");
+							$("#hours-list").append('<li>' + response.result.opening_hours.weekday_text[i] + "</li>");
 						};
 						
-						$("#stars").append("<p>"+response.result.name +"<br>"+response.result.formatted_address+"</p>");
-						
+						$("#review").append("<p>"+response.result.name +"<br>"+response.result.formatted_address+"</p>");
+						$("#review").append("<p id='stars'>");
 						$("#stars").append("Rating ");
 						var rating = Math.floor(response.result.rating);
 						
@@ -90,6 +106,7 @@ var map;
 							$("#stars").append("&#11088;");
 							
 						}
+						$("#review").append('<button type="button" class="btn btn-light" id="fav-btn">Add to Favs</button>');
 						initialize();
 					break;
 				default:
@@ -151,7 +168,7 @@ var map;
 	
 	$(document).on("click", "a", function(event) {
 		
-		$("#stars").empty();
+		$("#review").empty();
 		$("#hours").empty();
 		var locId = $(this).attr("id");
 		var locIdNum = locId.replace("item", "");
@@ -160,6 +177,25 @@ var map;
 		var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + googleAddr + "&inputtype=textquery&fields=place_id,geometry&key=AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A"; 
 		googleAPICall(queryURL, 1);
 		
+	});
+	var userVal = database.ref("/userID");
+	var checkVal = true;
+	$(document).on("click", "#fav-btn", function(event) {
+			var query = userVal.orderByKey();
+			query.once("value").then(function(snapshot){
+			snapshot.forEach(function(childSnapshot) {
+				if (childSnapshot.val().user == userId) {
+					checkVal = false;
+					alert("i worked");
+				}
+			});
+			if (checkVal){
+				alert("i didn't work");
+				userId = Date.now();
+				userVal.push({user:userId});
+			}
+			});
+			
 	});
 	
 	});
