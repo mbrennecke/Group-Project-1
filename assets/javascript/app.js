@@ -1,10 +1,26 @@
 $(document).ready(function() {
+	
+	var config = {
+    apiKey: "AIzaSyBtF6DH3zWElPvboPT3NLs2yGIQPG8xfE8",
+    authDomain: "beer-bound-69b80.firebaseapp.com",
+    databaseURL: "https://beer-bound-69b80.firebaseio.com",
+    projectId: "beer-bound-69b80",
+    storageBucket: "beer-bound-69b80.appspot.com",
+    messagingSenderId: "445520032555"
+  };
+  firebase.initializeApp(config);
+
+  
+   var database = firebase.database();
+  
+  
 	$("#map-canvas").hide();
 	$("#no-city").hide();
 	
 
  var placeId = "ChIJTWY5tdOaa4cRrfqurdOVGUQ";
-
+	var userId = localStorage.getItem("username");
+var x = document.cookie;
 
 var audio = new Audio ("../Group-Project-1/assets/sounds/beersound.mp3")
 var beermapAPI = "7d9d88201b9b82b413a7691e626322bc";
@@ -18,6 +34,7 @@ var map;
 				var infoWindow;
 				var service;
 
+			
 
 
 //this function listens for click event of form to search city
@@ -76,13 +93,14 @@ var map;
 					
 					break;
 				case 2:
-					
+						$("#hours").append('<p>Hours:</p>');
+						$("#hours").append('<ul id="hours-list">');
 						for (var i = 0; i<response.result.opening_hours.weekday_text.length; i++) {
-							$("#hours").append(response.result.opening_hours.weekday_text[i] + "<br>");
+							$("#hours-list").append('<li>' + response.result.opening_hours.weekday_text[i] + "</li>");
 						};
 						
-						$("#stars").append("<p>"+response.result.name +"<br>"+response.result.formatted_address+"</p>");
-						
+						$("#review").append("<p>"+response.result.name +"<br>"+response.result.formatted_address+"</p>");
+						$("#review").append("<p id='stars'>");
 						$("#stars").append("Rating ");
 						var rating = Math.floor(response.result.rating);
 						
@@ -90,6 +108,7 @@ var map;
 							$("#stars").append("&#11088;");
 							
 						}
+						$("#review").append('<button type="button" class="btn btn-light" id="fav-btn">Add to Favs</button>');
 						initialize();
 					break;
 				default:
@@ -151,7 +170,7 @@ var map;
 	
 	$(document).on("click", "a", function(event) {
 		
-		$("#stars").empty();
+		$("#review").empty();
 		$("#hours").empty();
 		var locId = $(this).attr("id");
 		var locIdNum = locId.replace("item", "");
@@ -160,6 +179,46 @@ var map;
 		var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + googleAddr + "&inputtype=textquery&fields=place_id,geometry&key=AIzaSyBPA6roP9n1wLdaIto4JBw1gCGBXCcJu4A"; 
 		googleAPICall(queryURL, 1);
 		
+	});
+	var userVal = database.ref("/userID");
+	var checkVal = true;
+	var userFavs = [];
+
+	function userFavsUpdate() {
+		userVal.child(userId).once('value', function(snapshot) {
+		var exists = (snapshot.val() !== null);
+		if (exists) {
+					alert('user ' + userId + ' exists!');
+				  } else {
+					alert('user ' + userId + ' does not exist!');
+				  }
+		});
+	}
+	
+	$(document).on("click", "#fav-btn", function(event) {
+		
+		if (userFavs.indexOf(placeId) < 0){
+			userFavs.push(placeId);
+			}
+			var query = userVal.orderByKey();
+			query.once("value").then(function(snapshot){
+			snapshot.forEach(function(childSnapshot) {
+				if (childSnapshot.val().user == userId) {
+					checkVal = false;
+					userFavsUpdate();
+				}
+			});
+			if (checkVal){
+				userId = Date.now();
+				//document.cookie = "username=" + userId + "; expires=Fri, 23 Aug 2019 00:00:00 UTC;";
+				localStorage.setItem("username", userId);
+				userVal.push({
+					user:userId,
+					favs: userFavs		
+				});
+			}
+			});
+			
 	});
 	
 	});
