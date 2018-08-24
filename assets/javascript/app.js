@@ -132,6 +132,10 @@ $(document).ready(function () {
 					break;
 				//call from google places for review information data
 				case 2:
+					//clears the view for when the call actually comes, should remove dupes when double clicking
+					$("#review").empty();
+					$("#hours").empty();
+					$("#map-canvas").empty();
 					//creates the hours list
 					$("#hours").append('<ul id="hours-list">');
 					for (var i = 0; i < response.result.opening_hours.weekday_text.length; i++) {
