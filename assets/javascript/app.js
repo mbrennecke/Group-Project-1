@@ -131,22 +131,18 @@ $(document).ready(function () {
 					googleReviewCall();
 					break;
 				//call from google places for review information data
-				case 2:
-					//clears the view for when the call actually comes, should remove dupes when double clicking
-					$("#review").empty();
-					$("#hours").empty();
-					$("#map-canvas").empty();
+				case 2:					
 					//creates the hours list
-					$("#hours").append('<ul id="hours-list">');
+					$("#hours").html('<ul id="hours-list">');
 					for (var i = 0; i < response.result.opening_hours.weekday_text.length; i++) {
 						$("#hours-list").append('<li>' + response.result.opening_hours.weekday_text[i] + "</li>");
 					};
 					//shows address for the place
-					$("#review").append("<p>" + response.result.name + "<br>" + response.result.formatted_address + "</p>");
+					$("#review").html("<p>" + response.result.name + "<br>" + response.result.formatted_address + "</p>");
 					faveBrew = response.result.name;
 					//creates the stars in the review based on google rating					
 					$("#review").append("<p id='stars'>");
-					$("#stars").append("Rating ");
+					$("#stars").html("Rating ");
 					//google rating can be a decimal number, this makes it a whole
 					var rating = Math.floor(response.result.rating);
 					for (var i = 0; i < rating; i++) {
